@@ -14,6 +14,31 @@ authRouter.post("/signup", async (req, res) => {
         const { firstName , lastName, emailId, password, role, department } = req.body;
         validateSignUpData(req);
 
+        const emailLower = emailId.toLowerCase();
+
+
+        // Check if all required fields are present
+        if (!firstName || !lastName || !emailId || !password || !role) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // Check if the role is valid
+        // const validRoles = ['student', 'faculty', 'admin'];
+        // if (!validRoles.includes(role)) {
+        //     return res.status(400).json({ message: "Invalid role" });
+        // }
+        
+          if (role === "student" && !emailLower.endsWith("@student.iul.ac.in")) {
+          return res.status(403).json({ message: "Student email must end with @student.iul.ac.in" });
+       }
+
+         if (role === "faculty") {
+         if (!emailLower.endsWith("@iul.ac.in") || emailLower.endsWith("@student.iul.ac.in")) {
+           return res.status(403).json({ message: "Invalid faculty email domain" });
+           }
+        }
+
+
         // Check if user already exists
         const existingUser = await User.findOne({ emailId})
         if( existingUser ){
