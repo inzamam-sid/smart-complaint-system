@@ -1,16 +1,16 @@
 # 📄 API Documentation – Complaint Management System
 
-This document provides all available API endpoints for the **Smart Complaint Management System**.
+This document describes all available API endpoints for the Smart Complaint Management System.
 
 ---
 
 ## 🔐 Authentication & Authorization
 
-| Role     | Permissions                                              |
-|----------|----------------------------------------------------------|
-| Student  | Create & view own complaints                             |
-| Faculty  | Create & view own complaints                             |
-| Admin    | View all complaints, change status, resolve complaints   |
+| Role    | Permissions                                             |
+|---------|----------------------------------------------------------|
+| Student | Create & view their own complaints                      |
+| Faculty | Create & view their own complaints                      |
+| Admin   | View all complaints, update status, and resolve issues  |
 
 ---
 
@@ -18,8 +18,8 @@ This document provides all available API endpoints for the **Smart Complaint Man
 
 ### 🔸 Register a User
 
-- **POST** `/api/auth/register`
-- **Description**: Registers a new student, faculty, or admin.
+- **Endpoint**: `POST /register`  
+- **Description**: Registers a new user (student, faculty, or admin "Use College Email ID only").
 
 #### 📦 Request Body
 ```json
@@ -29,59 +29,66 @@ This document provides all available API endpoints for the **Smart Complaint Man
   "password": "password123",
   "role": "student"
 }
+```
 
-✅ Success Response
-json
-Copy code
+#### ✅ Success Response
+```json
 {
   "message": "User registered successfully",
-  "token": "jwt_token"
+  "Data": "User Information"
 }
+```
 
+---
 
-🔸 Login a User
-POST /api/auth/login
+### 🔸 Login a User
 
-Description: Logs in a user and sets JWT token.
+- **Endpoint**: `POST /login`  
+- **Description**: Logs in a user and returns a JWT token.
 
-📦 Request Body
-json
-Copy code
+#### 📦 Request Body
+```json
 {
   "email": "john@example.com",
   "password": "password123"
 }
+```
 
-
-Success Response
-json
-Copy code
+#### ✅ Success Response
+```json
 {
   "message": "Login successful",
-  "token": "jwt_token"
+   "Data": "User Information"
 }
-🔸 Logout a User
-POST /api/auth/logout
+```
 
-Description: Logs out the user by clearing the JWT cookie.
+---
 
-📝 Complaint Routes
-🔸 Create a Complaint
-POST /api/complaints
+### 🔸 Logout a User
 
-Access: student, faculty
+- **Endpoint**: `POST /logout`  
+- **Description**: Logs out the user by clearing the JWT cookie.
 
-📦 Request Body
-json
-Copy code
+---
+
+## 📝 Complaint Routes
+
+### 🔸 Create a Complaint
+
+- **Endpoint**: `POST /complaints`  
+- **Access**: `student`, `faculty`
+
+#### 📦 Request Body
+```json
 {
   "title": "Wi-Fi not working",
   "description": "The lab has no internet access.",
-  "category": "Infrastructure"
+  "category": "Admistration"
 }
-✅ Success Response
-json
-Copy code
+```
+
+#### ✅ Success Response
+```json
 {
   "message": "Complaint submitted successfully",
   "complaint": {
@@ -89,20 +96,20 @@ Copy code
     "title": "Wi-Fi not working"
   }
 }
-🔸 Get All Complaints
-GET /api/complaints
+```
 
-Access:
+---
 
-student: returns only their complaints
+### 🔸 Get All Complaints
 
-faculty: returns only their complaints
+- **Endpoint**: `GET /complaints`  
+- **Access**:
+  - `student`: sees own complaints  
+  - `faculty`: sees own complaints  
+  - `admin`: sees all complaints
 
-admin: returns all complaints
-
-✅ Success Response
-json
-Copy code
+#### ✅ Success Response
+```json
 [
   {
     "_id": "123",
@@ -110,76 +117,87 @@ Copy code
     "status": "Pending"
   }
 ]
-🔸 Get Complaint by ID
-GET /api/complaints/:id
+```
 
-Access: Creator (student/faculty) or Admin
+---
 
-🔸 Update Complaint Status
-PATCH /api/complaints/:id/status
+<!-- ### 🔸 Get Complaint by ID
 
-Access: admin
+- **Endpoint**: `GET /api/complaints/:id`  
+- **Access**: Creator (student/faculty) or Admin
 
-📦 Request Body
-json
-Copy code
+--- -->
+
+### 🔸 Update Complaint Status
+
+- **Endpoint**: `PUT /complaints/:id/status`  
+- **Access**: `admin`
+
+#### 📦 Request Body
+```json
 {
   "status": "Resolved",
   "resolutionNote": "Issue fixed by IT department"
 }
-✅ Success Response
-json
-Copy code
+```
+
+#### ✅ Success Response
+```json
 {
-  "message": "Complaint status updated"
+  "message": "Complaint status updated",
+  "complaint": {
+     "_id": "123",
+     "title": "Internet is not Working",
+     "status": "Resolved",
+  }
 }
-🔸 Delete Complaint
-DELETE /api/complaints/:id
-
-Access: Only by the user who created the complaint
-
-❌ Error Response Format
-All errors return a JSON response like:
-
-json
-Copy code
-{
-  "error": "Error message here"
-}
-📌 Status Codes Used
-Code	Description
-200	OK
-201	Created
-400	Bad Request
-401	Unauthorized
-403	Forbidden (no access)
-404	Not Found
-500	Server Error
-
-🛠 Tech Stack
-Node.js
-
-Express.js
-
-MongoDB (Mongoose)
-
-JWT Authentication
-
-Postman (for testing)
-
-🧠 Author & License
-Developed by [Your Name]
-License: MIT
-
-yaml
-Copy code
+```
 
 ---
 
-Let me know if you'd like to customize it further or convert it into a downloadable file.
+<!-- ### 🔸 Delete Complaint
 
+- **Endpoint**: `DELETE /api/complaints/:id`  
+- **Access**: Only the user who created the complaint
 
+--- -->
 
+## ❌ Error Response Format
 
+All errors return the following format:
+```json
+{
+  "error": "Error message here"
+}
+```
 
+---
 
+## 📌 Status Codes Used
+
+| Code | Description             |
+|------|-------------------------|
+| 200  | OK                      |
+| 201  | Created                 |
+| 400  | Bad Request             |
+| 401  | Unauthorized            |
+| 403  | Forbidden (no access)   |
+| 404  | Not Found               |
+| 500  | Server Error            |
+
+---
+
+## 🛠 Tech Stack
+
+- Node.js  
+- Express.js  
+- MongoDB (Mongoose)  
+- JWT Authentication  
+- Postman (for testing)
+
+---
+
+## 🧠 Author & License
+
+Developed by **[Fraz Ahmad Haidry]**  
+License: **All Right Reserved**
