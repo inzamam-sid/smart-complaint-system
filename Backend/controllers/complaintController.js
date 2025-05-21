@@ -45,10 +45,12 @@ exports.getMyComplaints = async (req, res) => {
     if (currentUser.role.toLowerCase() === "student") {
       const studentIds = await User.find({ role: "student" }).select("_id");
       filter.createdBy = { $in: studentIds.map(u => u._id) };
-    } else if (currentUser.role.toLowerCase() === "faculty") {
+    } 
+    else if (currentUser.role.toLowerCase() === "faculty") {
       const facultyIds = await User.find({ role: "faculty" }).select("_id");
       filter.createdBy = { $in: facultyIds.map(u => u._id) };
-    } else if (currentUser.role.toLowerCase() === "admin") {
+    } 
+    else if (currentUser.role.toLowerCase() === "admin") {
       const userIds = await User.find({  }).select("_id");
       filter.createdBy = { $in: userIds };
     } 
@@ -56,7 +58,8 @@ exports.getMyComplaints = async (req, res) => {
     // Include own complaints always (even if role check missed it)
     if (!filter.createdBy) {
       filter.createdBy = currentUser._id;
-    } else {
+    } 
+    else {
       filter.createdBy.$in.push(currentUser._id);
     }
 

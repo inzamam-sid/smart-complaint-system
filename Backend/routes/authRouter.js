@@ -29,7 +29,7 @@ authRouter.post("/signup", async (req, res) => {
         // }
         
           if (role === "student" && !emailLower.endsWith("@student.iul.ac.in")) {
-          return res.status(403).json({ message: "Student email must end with @student.iul.ac.in" });
+          return res.status(403).json({ message: "Invalid student email domain"});
        }
 
          if (role === "faculty") {
