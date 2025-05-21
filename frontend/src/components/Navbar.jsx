@@ -32,6 +32,7 @@ const Navbar = ({ role }) => {
         >
           ☰
         </button>
+        
 
         {/* Nav Links */}
         <ul className={`md:flex md:items-center gap-6 ${isOpen ? 'block' : 'hidden'} md:block`}>
