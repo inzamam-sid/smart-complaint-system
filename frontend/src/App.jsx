@@ -1,13 +1,9 @@
 
-
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
-import Landingpage from './pages/Landingpage';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Complainlist from './pages/Complainlist';
-import AdminDashboard from './pages/admindashboard';
+import AdminDashboard from './components/AdminDashboard/Admindashboard';
+import ComplainList from './pages/complainList';
 
 function App() {
   return (
@@ -16,19 +12,19 @@ function App() {
       
       <Routes>
         {/* Home Page */}
-        <Route path="/" element={<Landingpage />} />
+        {/* <Route path="/" element={<Landingpage />} /> */}
 
         {/* Login Page */}
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
 
         {/* Signup Page */}
-        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
       
-        {/* Complain List Page */}
-       <Route path="/complain-list" element={<Complainlist />} />
+        {/* Complain List Page */} 
+        <Route path="/complain-list" element={<ComplainList />} />
 
         {/* Admin Dashboard Page */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
