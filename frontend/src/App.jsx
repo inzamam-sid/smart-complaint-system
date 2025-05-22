@@ -11,7 +11,7 @@ import SignUp from './components/Auth/SignUp';
 function App() {
   return (
     <>
-      <Navbar />
+   <Navbar />
       
 
       <Routes>
@@ -28,7 +28,7 @@ function App() {
       </Routes>
 
        <Footer />
-    </>
+</>
   );
 }
 
