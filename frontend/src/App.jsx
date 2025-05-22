@@ -1,37 +1,35 @@
-
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './components/Landing/Home';
+import LoginForm from './components/Auth/LoginForm';
+import SignUp from './components/Auth/SignUp';
+
 
 
 function App() {
   return (
     <>
-      <Navbar role="student" />
+   <Navbar />
       
+
       <Routes>
         {/* Home Page */}
-        {/* <Route path="/" element={<Landingpage />} /> */}
+        <Route path="/" element={<Home />} />
 
         {/* Login Page */}
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/loginform" element={<LoginForm />} />
 
-        {/* Signup Page */}
-        {/* <Route path="/signup" element={<Signup />} /> */}
-      
-        {/* Complain List Page */} 
-        <Route path="/complain-list" element={<ComplainList />} />
+        {/* Register Page */}
+        <Route path="/signup" element={<SignUp />} />
 
-        {/* Admin Dashboard Page */}
-        <Route path="/admindashboard" element={<AdminDashboard />} />
-
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/" />} />
+        
       </Routes>
-    </>
+
+       <Footer />
+</>
   );
 }
 
 export default App;
-
-
