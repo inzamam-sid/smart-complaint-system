@@ -1,19 +1,35 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './components/Landing/Home';
+import LoginForm from './components/Auth/LoginForm';
+import SignUp from './components/Auth/SignUp';
+
+
 
 function App() {
   return (
     <>
-      <Navbar role="student" />
-      <div className="p-4">
-        <h1 className="text-3xl font-bold">Welcome to Smart Complaint System</h1>
-        <h2>Hello guyz you know what time it is ?</h2>
-      </div>
+      <Navbar />
+      
+
+      <Routes>
+        {/* Home Page */}
+        <Route path="/" element={<Home />} />
+
+        {/* Login Page */}
+        <Route path="/loginform" element={<LoginForm />} />
+
+        {/* Register Page */}
+        <Route path="/signup" element={<SignUp />} />
+
+        
+      </Routes>
+
+       <Footer />
     </>
   );
 }
 
-export default App
+export default App;

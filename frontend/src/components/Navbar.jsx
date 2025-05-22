@@ -1,56 +1,31 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Navbar = ({ role }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  // Navigation links for different roles
-  const studentLinks = [
-    { name: 'Dashboard', to: '/student/dashboard' },
-    { name: 'Submit Complaint', to: '/student/complaint' },
-  ];
-
-  const adminLinks = [
-    { name: 'Admin Dashboard', to: '/admin/dashboard' },
-    { name: 'Manage Complaints', to: '/admin/complaints' },
-  ];
-
-  const links = role === 'admin' ? adminLinks : studentLinks;
-
+const Navbar = () => {
   return (
-    <nav className="bg-white shadow-md px-4 py-3">
+    <nav className="bg-white shadow-md px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-blue-600">
+        {/* Left: Logo */}
+        <Link to="/" className="text-2xl font-bold text-blue-600">
           🛠️ Smart Complaint
         </Link>
 
-        {/* Toggle button (mobile) */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-700"
-        >
-          ☰
-        </button>
-
-        {/* Nav Links */}
-        <ul className={`md:flex md:items-center gap-6 ${isOpen ? 'block' : 'hidden'} md:block`}>
-          {links.map((link) => (
-            <li key={link.name}>
-              <Link to={link.to} className="text-gray-700 hover:text-blue-600 font-medium">
-                {link.name}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700">
-              Logout
+        {/* Right: Buttons */}
+        <div className="flex gap-4">
+          <Link to="/LoginForm">
+            <button className="px-5 py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+              Login
             </button>
-          </li>
-        </ul>
+          </Link>
+          <Link to="/signup">
+            <button className="px-5 py-2 rounded-md border border-blue-600 text-blue-600 font-semibold hover:bg-blue-600 hover:text-white transition">
+              Sign Up
+            </button>
+          </Link>
+        </div>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
+
