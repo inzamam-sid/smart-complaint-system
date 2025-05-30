@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
   const navigate = useNavigate();
   const [username, setUsername] = useState(""); // or email if needed
   const [password, setPassword] = useState("");
@@ -18,7 +19,7 @@ const Login = () => {
         password: password,
       }, { withCredentials: true });
 
-       navigate("/")
+       navigate("/");
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong!");

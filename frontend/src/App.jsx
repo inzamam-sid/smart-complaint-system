@@ -1,34 +1,65 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './components/Landing/Home';
-import LoginForm from './components/Auth/LoginForm';
-import SignUp from './components/Auth/SignUp';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 
+// Global Layout Components
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
+// Auth & Landing
+import Home from "./components/Landing/Home";
+import LoginForm from "./components/Auth/LoginForm";
+import SignUp from "./components/Auth/SignUp";
+
+// Admin Dashboard & Management
+import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
+import AdminComplaintManagement from "./components/Admin/AdminDashboard/AdminComplaintManager";
+
+// Complaints
+import ComplaintDetail from "./components/Admin/Complaints/ComplaintDetail";
+import ComplaintListByStatus from "./components/Admin/Complaints/ComplaintListByStatus";
+import ComplaintsByDateList from "./components/Admin/Complaints/ComplaintsByDateList";
+import ComplaintsByStatus from "./components/Admin/Complaints/ComplaintsByStatus";
+import ComplaintSummary from "./components/Admin/Complaints/ComplaintSummary";
+import DateFilterComplaints from "./components/Admin/Complaints/DateFilterComplaints";
+
+// Filters & Tools
+import FilterComplaints from "./components/Admin/Filter/FilterComplaints";
+import NotificationCenter from "./components/Admin/Filter/NotificationCenter";
+import SearchResults from "./components/Admin/Filter/SearchResults";
 
 function App() {
   return (
     <>
-   <Navbar />
-      
+      <Navbar />
 
       <Routes>
-        {/* Home Page */}
+        {/* Home */}
         <Route path="/" element={<Home />} />
 
-        {/* Login Page */}
+        {/* Auth */}
         <Route path="/loginform" element={<LoginForm />} />
-
-        {/* Register Page */}
         <Route path="/signup" element={<SignUp />} />
 
-        
+        {/* Admin Dashboard */}
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
+        <Route path="/admin/complaint-management" element={<AdminComplaintManagement />} />
+
+        {/* Complaints */}
+        <Route path="/admin/complaints/:complaintId" element={<ComplaintDetail />} />
+        <Route path="/admin/complaints" element={<ComplaintListByStatus />} />
+        <Route path="/admin/complaints/by-status" element={<ComplaintsByStatus />} />
+        <Route path="/admin/complaints/summary" element={<ComplaintSummary />} />
+        <Route path="/admin/complaints/datefilter/list" element={<ComplaintsByDateList />} />
+        <Route path="/admin/complaints/datefilter" element={<DateFilterComplaints />} />
+
+        {/* Filters & Tools */}
+        <Route path="/admin/complaints/filter" element={<FilterComplaints />} />
+        <Route path="/admin/complaints/search/:query" element={<SearchResults />} />
+        <Route path="/admin/notifications" element={<NotificationCenter />} />
       </Routes>
 
-       <Footer />
-</>
+      <Footer />
+    </>
   );
 }
 
