@@ -26,6 +26,7 @@ import DateFilterComplaints from "./components/Admin/Complaints/DateFilterCompla
 import FilterComplaints from "./components/Admin/Filter/FilterComplaints";
 import NotificationCenter from "./components/Admin/Filter/NotificationCenter";
 import SearchResults from "./components/Admin/Filter/SearchResults";
+import Protected from "./components/Protected";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Navbar />
 
       <Routes>
+         {/* Public Routes */}
         {/* Home */}
         <Route path="/" element={<Home />} />
 
@@ -40,22 +42,23 @@ function App() {
         <Route path="/loginform" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp />} />
 
+
+        
         {/* Admin Dashboard */}
-        <Route path="/adminDashboard" element={<AdminDashboard />} />
-        <Route path="/admin/complaint-management" element={<AdminComplaintManagement />} />
-
-        {/* Complaints */}
-        <Route path="/admin/complaints/:complaintId" element={<ComplaintDetail />} />
-        <Route path="/admin/complaints" element={<ComplaintListByStatus />} />
-        <Route path="/admin/complaints/by-status" element={<ComplaintsByStatus />} />
-        <Route path="/admin/complaints/summary" element={<ComplaintSummary />} />
-        <Route path="/admin/complaints/datefilter/list" element={<ComplaintsByDateList />} />
-        <Route path="/admin/complaints/datefilter" element={<DateFilterComplaints />} />
-
-        {/* Filters & Tools */}
-        <Route path="/admin/complaints/filter" element={<FilterComplaints />} />
-        <Route path="/admin/complaints/search/:query" element={<SearchResults />} />
-        <Route path="/admin/notifications" element={<NotificationCenter />} />
+        {/* Protected Admin Routes */}
+        <Route element={<Protected requireAdmin={true} />}>
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/admin/complaint-management" element={<AdminComplaintManagement />} />
+          <Route path="/admin/complaints/:complaintId" element={<ComplaintDetail />} />
+          <Route path="/admin/complaints" element={<ComplaintListByStatus />} />
+          <Route path="/admin/complaints/by-status" element={<ComplaintsByStatus />} />
+          <Route path="/admin/complaints/summary" element={<ComplaintSummary />} />
+          <Route path="/admin/complaints/datefilter/list" element={<ComplaintsByDateList />} />
+          <Route path="/admin/complaints/datefilter" element={<DateFilterComplaints />} />
+          <Route path="/admin/complaints/filter" element={<FilterComplaints />} />
+          <Route path="/admin/complaints/search/:query" element={<SearchResults />} />
+          <Route path="/admin/notifications" element={<NotificationCenter />} />
+        </Route>
       </Routes>
 
       <Footer />

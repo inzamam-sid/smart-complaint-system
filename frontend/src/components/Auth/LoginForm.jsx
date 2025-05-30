@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../utils/UserSlice";
+import { useDispatch } from "react-redux";
+
 
 const Login = () => {
 
@@ -9,17 +12,26 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page reload
     setLoading(true);
 
     try {
-        await axios.post("http://localhost:8000/login", {
+        const res =  await axios.post("http://localhost:8000/login", {
         emailId: username,
         password: password,
       }, { withCredentials: true });
 
-       navigate("/");
+      console.log("Login response:", res.data);
+      dispatch(setUser(res.data));
+
+      if(res.data.role === "student" || res.data.role === "faculty") {
+        navigate("/studentDashboard");
+      } else {
+        navigate("/adminDashboard");
+      }
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong!");
