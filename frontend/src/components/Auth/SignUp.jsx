@@ -35,6 +35,8 @@ const Signup = () => {
     }
   };
 
+
+
   return (
     <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow bg-white">
       <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
@@ -124,6 +126,12 @@ const Signup = () => {
         <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded">
           Signup
         </button>
+        <p > Already have an Account{" "}
+          <a href="/loginform" className="text-blue-600 font-bold hover:underline">
+           SignIn
+          </a>
+
+        </p>
       </form>
     </div>
   );
