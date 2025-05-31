@@ -18,7 +18,9 @@ const Login = () => {
         password: password,
       }, { withCredentials: true });
 
-       navigate("/")
+      //  navigate("/")
+       navigate("/student/dashboard");
+      
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong!");
