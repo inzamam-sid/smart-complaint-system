@@ -21,18 +21,6 @@ exports.createComplaint = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error", error: error.message });
   }
 };
-
-// Get complaints created by the logged-in user
-// exports.getMyComplaints = async (req, res) => {
-//   try {
-//     const complaints = await Complaint.find({ createdBy: req.user._id }).sort({ createdAt: -1 });
-//     res.status(200).json({ success: true, complaints });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: "Server error", error: error.message });
-//   }
-// };
-
-
 exports.getMyComplaints = async (req, res) => {
   try {
     const currentUser = req.user;

@@ -6,7 +6,7 @@ const cors = require("cors");
 const authRouter = require("./routes/authRouter");
 const complaintRouter = require("./routes/complaintRouter");
 
-dotenv.config();
+dotenv.config(); 
 
 const app = express();
 
