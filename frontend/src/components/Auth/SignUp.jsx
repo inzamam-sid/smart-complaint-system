@@ -28,7 +28,7 @@ const Signup = () => {
         withCredentials: true,
       });
       alert("Signup successful!");
-      navigate("/login")
+      navigate("/loginform")
     } catch (error) {
       console.error("Signup error:", error);
       alert("Signup failed!");
