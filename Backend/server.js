@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require("./routes/authRouter");
 const complaintRouter = require("./routes/complaintRouter");
+const profileRouter = require("./routes/profile");
 
 dotenv.config();
 
@@ -16,12 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173", // frontend origin
+  origin: ["http://localhost:5173","https://localhost:5174"], // frontend origin
   credentials: true
 }));
 
 app.use("/", authRouter); 
 app.use("/complaints", complaintRouter);
+app.use("/", profileRouter);
 
 
 // Connect to MongoDB
