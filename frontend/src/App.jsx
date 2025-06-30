@@ -42,6 +42,10 @@ function App() {
         <Route path="/loginform" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp />} />
 
+        <Route path="/studentdashboard" element={<StudentDashboard/>} />
+
+        <Route path="/student/new-complaint" element={<NewComplaint />} />
+
 
         
         {/* Admin Dashboard */}
